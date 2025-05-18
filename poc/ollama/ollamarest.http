@@ -1,0 +1,48 @@
+@baseUrl=http://localhost:11434/api
+@generateUrl = {{baseUrl}}/generate
+@chatUrl = {{baseUrl}}/chat
+GET {{baseUrl}}
+
+###
+
+POST {{generateUrl}}
+Content-Type: application/json
+
+{
+    "model":"llama3.2",
+    "prompt":"Why is the sky blue?"
+}
+
+###
+
+POST {{generateUrl}}
+Content-Type: application/json
+
+{
+    "model":"llama3.2",
+    "prompt":"Tell me a fun fact about Portugal",
+    "stream":false
+}
+
+###
+
+POST {{chatUrl}}
+Content-Type: application/json
+
+{
+    "model":"llama3.2",
+    "messages":[{"role":"user", "content":"tell me a fun fact about Mozambique"}],
+    "stream":false
+}
+
+###
+
+POST {{generateUrl}}
+Content-Type: application/json
+
+{
+    "model":"llama3.2",
+    "prompt":"What color is the sky at different times of the day? Respond in JSON",
+    "format":"json",
+    "stream":false
+}
